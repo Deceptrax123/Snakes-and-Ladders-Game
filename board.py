@@ -5,7 +5,6 @@ import networkx as nx
 
 
 def create_board(ladders, snakes):
-    # Connect adjacent nodes
     adjacency_matrix = np.zeros((100, 100))
 
     # Create ladder and snake loops depending on board configuration

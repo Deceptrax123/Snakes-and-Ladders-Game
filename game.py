@@ -1,6 +1,7 @@
 import numpy as np
 import random
 from board import create_board
+import time
 
 
 def roll_dice():
@@ -23,9 +24,9 @@ def check(temp_index, adj_matrix):
     return -1
 
 
-def move(idx, roll):
+def move(idx, roll, adj_matrix):
     temp_idx = idx+roll
-    perm_idx = check(temp_idx)
+    perm_idx = check(temp_idx, adj_matrix)
 
     if perm_idx == -1:
         perm_idx = temp_idx
@@ -33,7 +34,7 @@ def move(idx, roll):
     return perm_idx
 
 
-def game():
+def game(adj_matrix):
     human_index = 0
     comp_index = 0
 
@@ -42,9 +43,12 @@ def game():
     while True:
         print("Click anything to roll dice")
         opt = int(input())
+        print("You have rolled the dice....")
+
+        time.sleep(3)
         hum_roll = roll_dice()
 
-        human_index = move(human_index, hum_roll)
+        human_index = move(human_index, hum_roll, adj_matrix)
 
         if human_index > 99:
             # In case of crossing finish line, continue until exact no of steps have been reached.
@@ -57,14 +61,15 @@ def game():
 
         print("Turn of Computer")
         print("Computer rolls dice....")
+        time.sleep(3)
 
         comp_roll = roll_dice()
-        comp_index = move(comp_index, comp_roll)
+        comp_index = move(comp_index, comp_roll, adj_matrix)
 
         if comp_index > 99:
             comp_index = comp_index-comp_roll
 
-        print(f"You have moved to index {comp_index}")
+        print(f"Computer has moved to index {comp_index}")
         if comp_index == 99:
             print("Computer wins!!!")
             break
