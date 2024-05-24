@@ -8,10 +8,6 @@ def create_board(ladders, snakes):
     # Connect adjacent nodes
     adjacency_matrix = np.zeros((100, 100))
 
-    # Join adjacent nodes
-    for i in range(99):
-        adjacency_matrix[i][i+1] = 1
-
     # Create ladder and snake loops depending on board configuration
     n_ladders = ladders
     n_snakes = snakes
@@ -23,7 +19,7 @@ def create_board(ladders, snakes):
 
         adjacency_matrix[low][high] = 1
 
-    print("Snake config")
+    print("Snake Config")
     for i in range(n_snakes):
         head = int(input("Enter head point: "))
         tail = int(input("Enter tail point: "))
