@@ -26,6 +26,9 @@ def check(temp_index, adj_matrix):
 
 def move(idx, roll, adj_matrix):
     temp_idx = idx+roll
+
+    if temp_idx > 99:
+        return temp_idx  # Handle the edge case nearing victory
     perm_idx = check(temp_idx, adj_matrix)
 
     if perm_idx == -1:
